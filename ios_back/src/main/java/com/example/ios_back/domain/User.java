@@ -7,14 +7,17 @@ public class User {
 
     private Long id;
     private String name;
+    private String phoneNumber;
     private String email;
     private String password;
-    private String realname;
+    private String realName;
     private String school;
-    private String grade;
+    private int grade;
     private String parentPhone;
     private List<User> friends = new ArrayList<>();
     private Authority Authority;
+
+
 
     public Long getId() {
         return id;
@@ -48,12 +51,12 @@ public class User {
         this.password = password;
     }
 
-    public String getRealname() {
-        return realname;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setRealname(String realname) {
-        this.realname = realname;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public String getSchool() {
@@ -64,11 +67,19 @@ public class User {
         this.school = school;
     }
 
-    public String getGrade() {
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getGrade() {
         return grade;
     }
 
-    public void setGrade(String grade) {
+    public void setGrade(int grade) {
         this.grade = grade;
     }
 
