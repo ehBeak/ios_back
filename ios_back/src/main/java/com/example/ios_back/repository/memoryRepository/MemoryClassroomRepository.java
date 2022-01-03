@@ -16,7 +16,7 @@ public class MemoryClassroomRepository implements ClassroomRepository {
 
     @Override
     public Classroom createClassroom(Long teacherId) {
-        Classroom classroom = new Classroom();
+        Classroom classroom = new Classroom(teacherId);
         return classroom;
     }
 
