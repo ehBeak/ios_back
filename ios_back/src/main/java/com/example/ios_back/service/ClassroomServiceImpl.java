@@ -29,9 +29,10 @@ public class ClassroomServiceImpl implements ClassroomService{
         Authority authority = authorityPolicy.getAuthorityByUserId(findUser);
         if(authority == Authority.TEACHER) {
             // 선생님 id로 클래스룸 생성
-            return classroomRepository.createClassroom(findUser.getId());
+            Classroom newClassroom = new Classroom(findUser.getId());
+            classroomRepository.save(newClassroom);
+            return newClassroom;
         }
-
         return null;
     }
 

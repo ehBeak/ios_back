@@ -46,4 +46,9 @@ public class MemoryUserRepository implements UserRepository {
     public void removeFriend() {
 
     }
+
+    @Override
+    public void clear() {
+        store.clear();
+    }
 }

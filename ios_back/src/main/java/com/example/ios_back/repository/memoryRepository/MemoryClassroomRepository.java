@@ -15,9 +15,8 @@ public class MemoryClassroomRepository implements ClassroomRepository {
 
 
     @Override
-    public Classroom createClassroom(Long teacherId) {
-        Classroom classroom = new Classroom(teacherId);
-        return classroom;
+    public void save(Classroom classroom) {
+        store.put(++sequence,classroom);
     }
 
     @Override
@@ -25,6 +24,11 @@ public class MemoryClassroomRepository implements ClassroomRepository {
         return store.values().stream()
                 .filter(member -> member.getTeacherId().equals(teacherId))
                 .findAny();
+    }
+
+    @Override
+    public void clear() {
+        store.clear();
     }
 
 

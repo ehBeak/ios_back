@@ -3,17 +3,30 @@ package com.example.ios_back.domain;
 public class Subject {
 
     private Long id;
-    private Subject subject;
+    private Classroom classroom;
+    private String name;
 
     public Long getId() {
         return id;
     }
 
-    public Subject getSubject() {
-        return subject;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setSubject(Subject subject) {
-        this.subject = subject;
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

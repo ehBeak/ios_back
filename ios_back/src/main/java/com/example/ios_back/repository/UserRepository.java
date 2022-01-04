@@ -23,4 +23,6 @@ public interface UserRepository {
     // 친구 삭제
     void removeFriend();
 
+    void clear();
+
 }
