@@ -14,7 +14,7 @@ public class AuthorityPolicyImpl implements AuthorityPolicy{
 
 
     @Override
-    public Authority getAuthorityByUserId(User user) {
+    public Authority getAuthorityByUser(User user) {
         return user.getAuthority();
     }
 }

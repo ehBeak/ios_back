@@ -1,8 +1,10 @@
 package com.example.ios_back.config;
 
 import com.example.ios_back.repository.ClassroomRepository;
+import com.example.ios_back.repository.SubjectRepository;
 import com.example.ios_back.repository.UserRepository;
 import com.example.ios_back.repository.memoryRepository.MemoryClassroomRepository;
+import com.example.ios_back.repository.memoryRepository.MemorySubjectRepository;
 import com.example.ios_back.repository.memoryRepository.MemoryUserRepository;
 import com.example.ios_back.service.AuthorityPolicy;
 import com.example.ios_back.service.AuthorityPolicyImpl;
@@ -16,7 +18,7 @@ public class AppConfig {
 
     @Bean
     public ClassroomService classroomService() {
-        return new ClassroomServiceImpl(userRepository(), classroomRepository(), authorityPolicy());
+        return new ClassroomServiceImpl(userRepository(), classroomRepository(), authorityPolicy(), subjectRepository());
     }
 
     @Bean
@@ -32,6 +34,11 @@ public class AppConfig {
     @Bean
     public ClassroomRepository classroomRepository() {
         return new MemoryClassroomRepository();
+    }
+
+    @Bean
+    public SubjectRepository subjectRepository(){
+        return new MemorySubjectRepository();
     }
 
 

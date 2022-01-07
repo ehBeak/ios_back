@@ -6,6 +6,15 @@ public class Subject {
     private Classroom classroom;
     private String name;
 
+
+    public Subject() {
+    }
+
+    public Subject(Classroom classroom, String name) {
+        this.classroom = classroom;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

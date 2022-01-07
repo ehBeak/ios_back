@@ -1,8 +1,13 @@
 package com.example.ios_back.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Classroom {
     private Long id;
     private Long teacherId;
+
+    private List<Subject> subjectList = new ArrayList<>();
 
     public Classroom() {
     }
@@ -25,5 +30,13 @@ public class Classroom {
 
     public void setTeacherId(Long teacherId) {
         this.teacherId = teacherId;
+    }
+
+    public List<Subject> getSubjectList() {
+        return subjectList;
+    }
+
+    public void setSubjectList(List<Subject> subjectList) {
+        this.subjectList = subjectList;
     }
 }
