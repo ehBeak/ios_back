@@ -6,6 +6,6 @@ import com.example.ios_back.domain.User;
 public interface AuthorityPolicy {
 
     // 권한 얻어오기 - userId
-    Authority getAuthorityByUserId(User userId);
+    Authority getAuthorityByUser(User user);
 
 }

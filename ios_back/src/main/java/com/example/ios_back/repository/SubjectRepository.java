@@ -1,8 +1,13 @@
 package com.example.ios_back.repository;
 
+import com.example.ios_back.domain.Subject;
+
 public interface SubjectRepository {
-    // 과목 조회
-    // 과목 추가
-    // 과목 삭제
-    // 과목 수정
+     /* CRUD */
+
+    // 과목 저장
+    void save(Subject subject);
+
+    // id로 조회
+    Subject findById(Long subjectId);
 }
