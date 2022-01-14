@@ -21,6 +21,13 @@ public class MemoryUserRepository implements UserRepository {
     }
 
     @Override
+    public Optional<User> findUserById(Long userId) {
+        return store.values().stream()
+                .filter(member -> member.getId().equals(userId))
+                .findAny();
+    }
+
+    @Override
     public User save(User user) {
         user.setId(++sequence);
         store.put(user.getId(), user);

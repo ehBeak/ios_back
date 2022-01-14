@@ -5,6 +5,12 @@ public class Memo {
     private String title;
     private String content;
 
+    public Memo(Long id, String title, String content) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+    }
+
     public Long getId() {
         return id;
     }
@@ -27,5 +33,11 @@ public class Memo {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    /* 비지니스 로직 */
+    public static Memo createMemo(Long id, String title, String content) {
+        Memo memo = new Memo(id, title, content);
+        return memo;
     }
 }

@@ -8,6 +8,8 @@ public interface UserRepository {
     // 조회
     Optional<User> findUserByUsername(String Username);
 
+    Optional<User> findUserById(Long userId);
+
     // 회원가입
     User save(User user);
 
