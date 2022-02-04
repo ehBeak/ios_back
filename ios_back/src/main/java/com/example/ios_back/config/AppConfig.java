@@ -6,8 +6,6 @@ import com.example.ios_back.repository.UserRepository;
 import com.example.ios_back.repository.memoryRepository.MemoryClassroomRepository;
 import com.example.ios_back.repository.memoryRepository.MemoryMemoRepository;
 import com.example.ios_back.repository.SubjectRepository;
-import com.example.ios_back.repository.UserRepository;
-import com.example.ios_back.repository.memoryRepository.MemoryClassroomRepository;
 import com.example.ios_back.repository.memoryRepository.MemorySubjectRepository;
 import com.example.ios_back.repository.memoryRepository.MemoryUserRepository;
 import com.example.ios_back.service.*;
