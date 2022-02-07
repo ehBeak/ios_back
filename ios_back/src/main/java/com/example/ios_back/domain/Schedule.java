@@ -3,7 +3,7 @@ package com.example.ios_back.domain;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +12,8 @@ import java.util.List;
 @Getter
 public class Schedule {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "schedule_id")
     private Long id;
 
@@ -22,8 +23,12 @@ public class Schedule {
     @OneToMany(mappedBy = "schedule")
     private List<Subject> subjectList = new ArrayList<>();
 
-    private String name; // 그룹 이름
-    private LocalDateTime date;
-    private String teacherName;
+    private LocalDate date;
 
+    //==생성 메소드==//
+    public static Long createSchedule(LocalDate date) {
+        Schedule schedule = new Schedule();
+        schedule.date = date;
+        return schedule.id;
+    }
 }

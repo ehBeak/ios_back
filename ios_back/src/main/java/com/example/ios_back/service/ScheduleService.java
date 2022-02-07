@@ -1,0 +1,34 @@
+package com.example.ios_back.service;
+
+import com.example.ios_back.domain.Memo;
+import com.example.ios_back.domain.Schedule;
+import com.example.ios_back.domain.Subject;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
+public interface ScheduleService {
+
+    /*
+     * Schedule 객체 조회
+     * */
+    public Schedule findSchedule(LocalDate localDate);
+
+    /*
+     * Schedule 객체에 연결된 과목 조회
+     * */
+    public List<Subject> findSubjects(Long scheduleId);
+
+    /*
+     * Schedule 객체에 연결된 메모 조회
+     * */
+    public List<Memo> findMemos(Long scheduleId);
+
+    /*
+     * Schedule 객체 추가
+     * */
+    public void storeSchedule(Schedule schedule);
+
+
+}
