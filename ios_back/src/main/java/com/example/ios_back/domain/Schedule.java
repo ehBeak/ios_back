@@ -31,4 +31,6 @@ public class Schedule {
         schedule.date = date;
         return schedule;
     }
+
+    //==연관관계 메서드==/
 }

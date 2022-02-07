@@ -39,10 +39,10 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
-    public List<Memo> findMemos(Long scheduleId) {
+    public Memo findMemos(Long scheduleId) {
         Optional<Schedule> optionalSchedule = scheduleRepository.findById(scheduleId);
         Schedule schedule = optionalSchedule.orElseThrow(() -> new NoSuchElementException());
-        return schedule.getMemoList();
+        return schedule.getMemo();
     }
 
     @Override

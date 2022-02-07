@@ -4,7 +4,7 @@ import com.example.ios_back.domain.Homework;
 
 import java.util.List;
 
-public interface SubjectRepository {
+public interface SubjectService {
     /*
      * 과목 객체에 연결된 숙제객체 조회
      * */

@@ -23,7 +23,7 @@ public interface ScheduleService {
     /*
      * Schedule 객체에 연결된 메모 조회
      * */
-    public List<Memo> findMemos(Long scheduleId);
+    public Memo findMemos(Long scheduleId);
 
     /*
      * Schedule 객체 추가
