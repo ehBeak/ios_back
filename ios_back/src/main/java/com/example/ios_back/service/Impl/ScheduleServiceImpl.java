@@ -46,6 +46,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     @Override
+    @Transactional
     public void storeSchedule(Schedule schedule) {
         scheduleRepository.save(schedule);
     }
