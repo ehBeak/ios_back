@@ -3,6 +3,7 @@ package com.example.ios_back.domain;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class Schedule {
     private List<Subject> subjectList = new ArrayList<>();
 
     private String name; // 그룹 이름
+    private LocalDateTime date;
     private String teacherName;
 
 }

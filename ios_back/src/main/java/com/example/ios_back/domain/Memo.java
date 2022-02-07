@@ -16,5 +16,4 @@ public class Memo {
     private Schedule schedule;
 
     private String content;
-    private LocalDateTime date;
 }
