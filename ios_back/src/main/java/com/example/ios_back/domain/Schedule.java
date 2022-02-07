@@ -26,9 +26,9 @@ public class Schedule {
     private LocalDate date;
 
     //==생성 메소드==//
-    public static Long createSchedule(LocalDate date) {
+    public static Schedule createSchedule(LocalDate date) {
         Schedule schedule = new Schedule();
         schedule.date = date;
-        return schedule.id;
+        return schedule;
     }
 }
