@@ -1,13 +1,8 @@
 package com.example.ios_back.repository;
 
 import com.example.ios_back.domain.Subject;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SubjectRepository {
-     /* CRUD */
+public interface SubjectRepository extends JpaRepository<Subject, Long> {
 
-    // 과목 저장
-    void save(Subject subject);
-
-    // id로 조회
-    Subject findById(Long subjectId);
 }

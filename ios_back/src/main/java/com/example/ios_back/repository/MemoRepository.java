@@ -1,15 +1,7 @@
 package com.example.ios_back.repository;
 
-import com.example.ios_back.domain.User;
+import com.example.ios_back.domain.Memo;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MemoRepository {
-
-    /* save */
-    void saveMemo(User user, String title, String content);
-
-    /* update */
-    void updateMemo(Long memoId, String memo);
-
-    /* delete */
-    void clear(Long memoId);
+public interface MemoRepository extends JpaRepository<Memo, Long> {
 }
