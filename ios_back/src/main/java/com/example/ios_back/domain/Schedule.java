@@ -17,8 +17,8 @@ public class Schedule {
     @Column(name = "schedule_id")
     private Long id;
 
-    @OneToMany(mappedBy = "schedule")
-    private List<Memo> memoList = new ArrayList<>();
+    @OneToOne(mappedBy = "schedule")
+    private Memo memo;
 
     @OneToMany(mappedBy = "schedule")
     private List<Subject> subjectList = new ArrayList<>();
