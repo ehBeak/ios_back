@@ -10,7 +10,8 @@ import java.time.LocalDateTime;
 @Getter
 public class Homework {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "homework")
     private Long id;
 
@@ -18,7 +19,21 @@ public class Homework {
     @JoinColumn(name = "subject_id")
     private Subject subject;
 
-    private LocalDateTime date;
     private String name;
     private boolean complete;
+
+    //==생성 메서드==//
+    public static Homework createHomework(Subject subject, String name) {
+        Homework newHomework = new Homework();
+        newHomework.setSubject(subject);
+        newHomework.complete = false;
+        newHomework.name = name;
+        return newHomework;
+    }
+
+    //==연관관계 메서드==//
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+        this.subject.getHomeworkList().add(this);
+    }
 }
