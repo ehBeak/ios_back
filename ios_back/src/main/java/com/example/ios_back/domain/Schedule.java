@@ -36,4 +36,5 @@ public class Schedule {
     public void setMemo(Memo memo) {
         this.memo = memo;
     }
+
 }

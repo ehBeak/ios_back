@@ -11,7 +11,8 @@ import java.util.List;
 @Getter
 public class Subject {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "subject_id")
     private Long id;
 
@@ -24,5 +25,17 @@ public class Subject {
 
     @OneToMany(mappedBy = "subject")
     private List<Homework> homeworkList = new ArrayList<>();
+
+    //==생성 메소드==//
+    public static Subject createSubject(Schedule schedule, String name) {
+        Subject newSubject = new Subject();
+        newSubject.schedule = schedule;
+        newSubject.schedule.getSubjectList().add(newSubject);
+        newSubject.name = name;
+        return newSubject;
+    }
+
+    //==연관관계 메서드==//
+
 
 }

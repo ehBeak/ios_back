@@ -21,11 +21,6 @@ public interface ScheduleService {
     public List<Subject> findSubjects(Long scheduleId);
 
     /*
-     * Schedule 객체에 연결된 메모 조회
-     * */
-    public Memo findMemos(Long scheduleId);
-
-    /*
      * Schedule 객체 추가
      * */
     public void storeSchedule(Schedule schedule);
