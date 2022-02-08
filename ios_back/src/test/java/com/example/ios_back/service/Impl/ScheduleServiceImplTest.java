@@ -1,8 +1,11 @@
 package com.example.ios_back.service.Impl;
 
 import com.example.ios_back.domain.Schedule;
+import com.example.ios_back.domain.Subject;
 import com.example.ios_back.repository.ScheduleRepository;
+import com.example.ios_back.repository.SubjectRepository;
 import com.example.ios_back.service.ScheduleService;
+import com.example.ios_back.service.SubjectService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,7 +16,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -27,6 +32,10 @@ class ScheduleServiceImplTest {
     ScheduleRepository scheduleRepository;
     @Autowired
     ScheduleService scheduleService;
+    @Autowired
+    SubjectService subjectService;
+    @Autowired
+    SubjectRepository subjectRepository;
 
     @Test
     @DisplayName("일정 조회")
@@ -60,4 +69,21 @@ class ScheduleServiceImplTest {
         assertThrows(NoSuchElementException.class, () -> scheduleService.findSchedule(LocalDate.now()));
     }
 
+    @Test
+    @DisplayName("일정에 있는 과목리스트 조회")
+    void findSubjectsTest() {
+        //given
+        Schedule schedule = Schedule.createSchedule(LocalDate.now());
+        Schedule saveSchedule = scheduleRepository.save(schedule);
+        Schedule findSchedule = scheduleService.findSchedule(saveSchedule.getDate());
+
+        subjectService.addSubject(findSchedule.getId(), "수학");
+        subjectService.addSubject(findSchedule.getId(), "과학");
+
+        //when
+        List<Subject> subjects = scheduleService.findSubjects(findSchedule.getId());
+
+        //then
+        assertThat(subjects.size()).isEqualTo(2);
+    }
 }
