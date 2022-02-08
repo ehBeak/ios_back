@@ -36,7 +36,7 @@ class MemoServiceImplTest {
     void saveMemo_content() {
         //given
         Schedule schedule = Schedule.createSchedule(LocalDate.now());
-        Schedule saveSchedule = scheduleRepository.save(schedule);
+        scheduleRepository.save(schedule);
         Schedule findSchedule = scheduleService.findSchedule(LocalDate.now());
 
         //when
@@ -49,7 +49,22 @@ class MemoServiceImplTest {
     @Test
     @DisplayName("메모 저장_schedule")
     void saveMemo_schedule() {
+    }
 
+    @Test
+    @DisplayName("메모 조회")
+    void findMemo() {
+        //given
+        Schedule schedule = Schedule.createSchedule(LocalDate.now());
+        scheduleRepository.save(schedule);
+        Schedule findSchedule = scheduleService.findSchedule(LocalDate.now());
+        memoService.saveMemo(findSchedule.getId(), "메모메모메모메모");
+
+        //when
+        Memo memo = memoService.findMemo(findSchedule.getId());
+
+        //then
+        assertThat(memo.getContent()).isEqualTo("메모메모메모메모");
     }
 
 }

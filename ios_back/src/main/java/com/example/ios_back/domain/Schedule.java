@@ -33,4 +33,7 @@ public class Schedule {
     }
 
     //==연관관계 메서드==/
+    public void setMemo(Memo memo) {
+        this.memo = memo;
+    }
 }

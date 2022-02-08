@@ -25,6 +25,7 @@ public class Memo {
     public static Memo createMemo(Schedule schedule) {
         Memo newMemo = new Memo();
         newMemo.schedule = schedule;
+        newMemo.schedule.setMemo(newMemo);
         return newMemo;
     }
 

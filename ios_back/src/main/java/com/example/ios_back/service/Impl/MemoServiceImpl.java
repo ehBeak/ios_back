@@ -23,6 +23,14 @@ public class MemoServiceImpl implements MemoService {
     //TODO: 2022.02.07 매개변수에 대한 null 처리
 
     @Override
+    public Memo findMemo(Long scheduleId) {
+        Optional<Schedule> optionalSchedule = scheduleRepository.findById(scheduleId);
+        Schedule schedule = optionalSchedule.orElseThrow(() -> new NoSuchElementException());
+
+        return schedule.getMemo();
+    }
+
+    @Override
     @Transactional
     public void saveMemo(Long scheduleId, String content) {
         Optional<Schedule> optionalSchedule = scheduleRepository.findById(scheduleId);

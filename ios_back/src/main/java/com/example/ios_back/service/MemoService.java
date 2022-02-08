@@ -1,5 +1,7 @@
 package com.example.ios_back.service;
 
+import com.example.ios_back.domain.Memo;
+
 public interface MemoService {
     /*
      * 메모 수정
@@ -8,6 +10,7 @@ public interface MemoService {
     /*
      * 메모 조회
      * */
+    public Memo findMemo(Long scheduleId);
 
     /*
      * 메모 저장
