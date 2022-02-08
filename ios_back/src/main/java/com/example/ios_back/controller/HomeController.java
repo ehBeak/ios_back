@@ -33,6 +33,7 @@ public class HomeController {
      * 일정 조회 */
     @GetMapping("/schedule/date")
     //TODO: 2022.02.08. memo, subject, homework 예외처리(null)
+    //TODO: 2022.02.08. dto다시 만들기
     public ScheduleDTO getSchedule(@RequestParam String date) {//2017-11-21
         LocalDate requestDate = LocalDate.parse(date);
         ScheduleDTO scheduleDTO = new ScheduleDTO();
@@ -50,6 +51,16 @@ public class HomeController {
     }
 
     /*
+     * 일정 추가*/
+    //TODO: 2022.02.08. 과목 null 이면 생성X
+    @GetMapping("/schedule/date/new")
+    public void addSchedule(@RequestParam String date) {
+        LocalDate requestDate = LocalDate.parse(date);
+        Schedule newSchedule = Schedule.createSchedule(requestDate);
+        scheduleService.storeSchedule(newSchedule);
+    }
+
+    /*
      * 과목 추가*/
     @PostMapping("/schedule/subject/new")
     public void addSubject(@RequestBody CreateSubjectForm form) {
@@ -58,7 +69,8 @@ public class HomeController {
     }
 
     /*
-     * 과제 추가*/
+     * 메모 추가*/
+    //TODO: 2022.02.08. 중복 처리
     @PostMapping("/schedule/memo/new")
     public void addMemo(@RequestBody CreateMemoForm form) {
         Schedule schedule = scheduleService.findSchedule(LocalDate.parse(form.getDate()));

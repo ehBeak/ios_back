@@ -4,6 +4,9 @@ spring:
     username: admin
     password: noti
     driver-class-name: org.h2.Driver
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
   output:
     ansi:
@@ -11,7 +14,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         #        show_sql: true
@@ -20,3 +23,6 @@ spring:
 logging:
   level:
     org.hibernate.SQL: debug
+
+
+

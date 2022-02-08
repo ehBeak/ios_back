@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface HomeworkRepository extends JpaRepository<Homework, Long> {
 
+    @Override
+    <S extends Homework> S save(S entity);
 }
