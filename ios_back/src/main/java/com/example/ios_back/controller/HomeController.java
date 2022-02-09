@@ -1,8 +1,11 @@
 package com.example.ios_back.controller;
 
+import com.example.ios_back.controller.dto.HomeworkDTO;
+import com.example.ios_back.controller.dto.MemoDTO;
 import com.example.ios_back.controller.dto.ScheduleDTO;
 import com.example.ios_back.controller.form.CreateMemoForm;
 import com.example.ios_back.controller.form.CreateSubjectForm;
+import com.example.ios_back.domain.Homework;
 import com.example.ios_back.domain.Schedule;
 import com.example.ios_back.domain.Subject;
 import com.example.ios_back.repository.ScheduleRepository;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -39,13 +43,16 @@ public class HomeController {
         ScheduleDTO scheduleDTO = new ScheduleDTO();
 
         Schedule schedule = scheduleService.findSchedule(requestDate);
-
         List<Subject> subjectList = schedule.getSubjectList();
+
         for (Subject subject : subjectList) {
-            subject.getHomeworkList().stream().
-                    forEach(homework -> scheduleDTO.getHomeworkMap().put(subject.getName(), homework));
+            List<HomeworkDTO> homeworkDTOList = subject.getHomeworkList().stream().map(homework ->
+                new HomeworkDTO(homework.getId(), homework.getName(), homework.isComplete())
+            ).collect(Collectors.toList());
+            scheduleDTO.getMap().put(subject.getName(), homeworkDTOList);
         }
-        scheduleDTO.setMemo(schedule.getMemo());
+
+        scheduleDTO.setMemo(new MemoDTO(schedule.getMemo().getId(),schedule.getMemo().getContent()));
 
         return scheduleDTO;
     }
