@@ -95,8 +95,15 @@ public class HomeController {
         Schedule schedule = scheduleService.findSchedule(LocalDate.parse(form.getDate()));
         //TODO: 2022.02.09. service로 옮기기
         Optional<Subject> byScheduleAndName = subjectRepository.findByScheduleAndName(schedule, form.getSubjectName());
-        Subject subject = byScheduleAndName.orElseThrow(()->new NoSuchElementException(""));
+        Subject subject = byScheduleAndName.orElseThrow(() -> new NoSuchElementException(""));
         homeworkService.addHomework(subject.getId(), form.getContent());
+    }
+
+    /*
+     * 숙제 완료 체크 */
+    @GetMapping("/schedule/homework/complete")
+    public void changeHomework(@RequestParam Long homeworkId) {
+        homeworkService.modifyComplete(homeworkId);
     }
 
     /*
