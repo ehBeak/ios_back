@@ -32,4 +32,11 @@ public class HomeworkServiceImpl implements HomeworkService {
 
         return homeworkRepository.save(homework).getId();
     }
+
+    @Override
+    public boolean modifyComplete(Long homeworkId) {
+        Optional<Homework> homeworkOptional = homeworkRepository.findById(homeworkId);
+        Homework homework = homeworkOptional.orElseThrow(() -> new NoSuchElementException("해당 homework가 존재하지 않습니다"));
+        return homework.changeComplete();
+    }
 }

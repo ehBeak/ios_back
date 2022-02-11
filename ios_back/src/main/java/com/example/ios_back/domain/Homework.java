@@ -36,4 +36,10 @@ public class Homework {
         this.subject = subject;
         this.subject.getHomeworkList().add(this);
     }
+
+    //==비지니스 로직==//
+
+    public boolean changeComplete() {
+        return !this.complete;
+    }
 }
