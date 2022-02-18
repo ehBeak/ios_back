@@ -1,8 +1,6 @@
 package com.example.ios_back.controller;
 
-import com.example.ios_back.controller.dto.HomeworkDTO;
-import com.example.ios_back.controller.dto.MemoDTO;
-import com.example.ios_back.controller.dto.ScheduleDTO;
+import com.example.ios_back.controller.dto.*;
 import com.example.ios_back.controller.form.CreateHomeworkForm;
 import com.example.ios_back.controller.form.CreateMemoForm;
 import com.example.ios_back.controller.form.CreateSubjectForm;
@@ -59,6 +57,29 @@ public class HomeController {
         scheduleDTO.setMemo(new MemoDTO(schedule.getMemo().getId(), schedule.getMemo().getContent()));
 
         return scheduleDTO;
+    }
+
+    @GetMapping("/schedule/v2/date")
+    public ScheduleDtoV2 getSchedule_V2(@RequestParam String date) {//2017-11-21
+        LocalDate requestDate = LocalDate.parse(date);
+        ScheduleDtoV2 scheduleDtoV2 = new ScheduleDtoV2();
+
+//        ScheduleDTO scheduleDTO = new ScheduleDTO();
+
+        Schedule schedule = scheduleService.findSchedule(requestDate);
+        List<Subject> subjectList = schedule.getSubjectList();
+
+        for (Subject subject : subjectList) {
+            List<HomeworkDTO> homeworkDTOList = subject.getHomeworkList().stream()
+                    .map(homework -> new HomeworkDTO(homework.getId(), homework.getName(), homework.isComplete()))
+                    .collect(Collectors.toList());
+            scheduleDtoV2.getTodo().add(new TodoDTO(new SubjectDTO(subject.getId(),subject.getName()), homeworkDTOList));
+//            scheduleDTO.getMap().put(subject.getName(), homeworkDTOList);
+        }
+
+        scheduleDtoV2.setMemoDTO(new MemoDTO(schedule.getMemo().getId(), schedule.getMemo().getContent()));
+
+        return scheduleDtoV2;
     }
 
     /*
