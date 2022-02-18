@@ -3,7 +3,7 @@ spring:
     url: jdbc:mysql://3.36.243.27:3306/noti?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
     username: onusDB #admin
     password: onus2021 #noti
-    driver-class-name:
+    driver-class-name: com.mysql.cj.jdbc.Driver
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
