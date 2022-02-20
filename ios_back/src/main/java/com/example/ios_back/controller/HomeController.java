@@ -39,7 +39,6 @@ public class HomeController {
      * 일정 조회 */
     @GetMapping("/schedule/date")
     //TODO: 2022.02.08. memo, subject, homework 예외처리(null)
-    //TODO: 2022.02.08. dto다시 만들기
     public ScheduleDTO getSchedule(@RequestParam String date) {//2017-11-21
         LocalDate requestDate = LocalDate.parse(date);
         ScheduleDTO scheduleDTO = new ScheduleDTO();
