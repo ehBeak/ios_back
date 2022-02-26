@@ -76,7 +76,7 @@ public class HomeController {
 //            scheduleDTO.getMap().put(subject.getName(), homeworkDTOList);
         }
 
-        scheduleDtoV2.setMemoDTO(new MemoDTO(schedule.getMemo().getId(), schedule.getMemo().getContent()));
+        scheduleDtoV2.setMemo(new MemoDTO(schedule.getMemo().getId(), schedule.getMemo().getContent()));
 
         return scheduleDtoV2;
     }

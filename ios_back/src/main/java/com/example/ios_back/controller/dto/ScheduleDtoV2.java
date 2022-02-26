@@ -9,5 +9,5 @@ import java.util.List;
 public class ScheduleDtoV2 {
 
     private List<TodoDTO> todo = new ArrayList<>();
-    private MemoDTO memoDTO;
+    private MemoDTO memo;
 }
