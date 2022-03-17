@@ -5,7 +5,10 @@ import lombok.Getter;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "schedule")
@@ -35,6 +38,17 @@ public class Schedule {
     //==연관관계 메서드==/
     public void setMemo(Memo memo) {
         this.memo = memo;
+    }
+
+    //==비지니스 로직==//
+    public boolean isComplete() {
+
+        List<Boolean> check = new ArrayList<>();
+        List<Subject> subjectList = this.getSubjectList();
+        subjectList.forEach(subject -> subject.getHomeworkList().forEach(homework -> check.add(homework.isComplete())));
+
+        for (Boolean aBoolean : check) if (aBoolean==Boolean.FALSE) return false;
+        return true;
     }
 
 }

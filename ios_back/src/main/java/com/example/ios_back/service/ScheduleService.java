@@ -26,4 +26,8 @@ public interface ScheduleService {
     public void storeSchedule(Schedule schedule);
 
 
+    /*
+     * Schedule 객체 조회 - 년도-월
+     */
+    public List<Schedule> findAllScheduleByMonth(String year, String month);
 }

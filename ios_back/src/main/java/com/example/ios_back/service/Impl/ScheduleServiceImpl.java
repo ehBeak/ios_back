@@ -44,4 +44,10 @@ public class ScheduleServiceImpl implements ScheduleService {
     public void storeSchedule(Schedule schedule) {
         scheduleRepository.save(schedule);
     }
+
+
+    @Override
+    public List<Schedule> findAllScheduleByMonth(String year, String month) {
+        return scheduleRepository.findAllByDates(year + "-" + month + "-%");
+    }
 }

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -72,7 +73,7 @@ public class HomeController {
             List<HomeworkDTO> homeworkDTOList = subject.getHomeworkList().stream()
                     .map(homework -> new HomeworkDTO(homework.getId(), homework.getName(), homework.isComplete()))
                     .collect(Collectors.toList());
-            scheduleDtoV2.getTodo().add(new TodoDTO(new SubjectDTO(subject.getId(),subject.getName()), homeworkDTOList));
+            scheduleDtoV2.getTodo().add(new TodoDTO(new SubjectDTO(subject.getId(), subject.getName()), homeworkDTOList));
 //            scheduleDTO.getMap().put(subject.getName(), homeworkDTOList);
         }
 
@@ -134,4 +135,18 @@ public class HomeController {
         return isEmpty;
     }
 
+    /*
+     * 캘린더 조회 */
+    @GetMapping("/schedule/month")
+    public List<ScheduleDTO3> getAllSchedule(String year, String month) {
+
+        List<ScheduleDTO3> scheduleDTO3List = new ArrayList<>();
+        List<Schedule> findSchedule = scheduleService.findAllScheduleByMonth(year, month);
+        findSchedule.forEach(schedule -> {
+            scheduleDTO3List.add(new ScheduleDTO3(schedule.getId(), schedule.getDate(), schedule.isComplete()));
+
+        });
+
+        return scheduleDTO3List;
+    }
 }
