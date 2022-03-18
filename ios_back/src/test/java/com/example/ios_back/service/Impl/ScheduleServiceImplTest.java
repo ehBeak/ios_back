@@ -27,6 +27,7 @@ class ScheduleServiceImplTest {
     @Autowired ScheduleService scheduleService;
     @Autowired ScheduleRepository scheduleRepository;
 
+    //TODO: 롤백 문제 해결
     @Test
     @DisplayName("년도와 월을 주면 그에 해당하는 객체리스트 반환")
     public void findAllScheduleByMonthTest() {

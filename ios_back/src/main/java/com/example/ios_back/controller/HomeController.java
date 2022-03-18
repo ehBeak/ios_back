@@ -18,10 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -36,32 +33,10 @@ public class HomeController {
     private final MemoService memoService;
     private final SubjectRepository subjectRepository;
 
-    /*
-     * 일정 조회 */
+    //TODO: 변수 파라미터 바꾸기
     @GetMapping("/schedule/date")
-    //TODO: 2022.02.08. memo, subject, homework 예외처리(null)
-    public ScheduleDTO getSchedule(@RequestParam String date) {//2017-11-21
-        LocalDate requestDate = LocalDate.parse(date);
-        ScheduleDTO scheduleDTO = new ScheduleDTO();
-
-        Schedule schedule = scheduleService.findSchedule(requestDate);
-        List<Subject> subjectList = schedule.getSubjectList();
-
-        for (Subject subject : subjectList) {
-            List<HomeworkDTO> homeworkDTOList = subject.getHomeworkList().stream().map(homework ->
-                    new HomeworkDTO(homework.getId(), homework.getName(), homework.isComplete())
-            ).collect(Collectors.toList());
-            scheduleDTO.getMap().put(subject.getName(), homeworkDTOList);
-        }
-
-        scheduleDTO.setMemo(new MemoDTO(schedule.getMemo().getId(), schedule.getMemo().getContent()));
-
-        return scheduleDTO;
-    }
-
-    @GetMapping("/schedule/v2/date")
-    public ScheduleDtoV2 getSchedule_V2(@RequestParam String date) {//2017-11-21
-        LocalDate requestDate = LocalDate.parse(date);
+    public ScheduleDtoV2 getSchedule(@RequestParam(name = "year") String year, @RequestParam(name = "month") String month, @RequestParam(name = "day") String day) {//2017-11-21
+        LocalDate requestDate = LocalDate.parse(year+"-"+month+"-"+day);
         ScheduleDtoV2 scheduleDtoV2 = new ScheduleDtoV2();
 
 //        ScheduleDTO scheduleDTO = new ScheduleDTO();

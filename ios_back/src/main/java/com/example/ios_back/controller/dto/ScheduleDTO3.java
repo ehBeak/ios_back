@@ -7,12 +7,13 @@ import java.time.LocalDate;
 
 @Getter @Setter
 public class ScheduleDTO3 {
-    private Long id;
+    //TODO: ScheduleId
+    private Long scheduleId;
     private LocalDate date;
     private boolean complete;
 
-    public ScheduleDTO3(Long id, LocalDate date, boolean complete) {
-        this.id = id;
+    public ScheduleDTO3(Long scheduleId, LocalDate date, boolean complete) {
+        this.scheduleId = scheduleId;
         this.date = date;
         this.complete = complete;
     }
