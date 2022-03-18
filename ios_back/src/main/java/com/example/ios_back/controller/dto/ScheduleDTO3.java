@@ -7,7 +7,6 @@ import java.time.LocalDate;
 
 @Getter @Setter
 public class ScheduleDTO3 {
-    //TODO: ScheduleId
     private Long scheduleId;
     private LocalDate date;
     private boolean complete;

@@ -10,11 +10,11 @@ import java.util.List;
 
 @Data
 public class SubjectDTO {
-    private Long id;
+    private Long subjectId;
     private String name;
 
-    public SubjectDTO(Long id, String name) {
-        this.id = id;
+    public SubjectDTO(Long subjectId, String name) {
+        this.subjectId = subjectId;
         this.name = name;
     }
 }

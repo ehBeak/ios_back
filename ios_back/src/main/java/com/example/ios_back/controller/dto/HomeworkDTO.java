@@ -9,12 +9,12 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class HomeworkDTO {
-    private Long id;
+    private Long homeworkId;
     private String name;
     private boolean complete;
 
-    public HomeworkDTO(Long id, String name, boolean complete) {
-        this.id = id;
+    public HomeworkDTO(Long homeworkId, String name, boolean complete) {
+        this.homeworkId = homeworkId;
         this.name = name;
         this.complete = complete;
     }

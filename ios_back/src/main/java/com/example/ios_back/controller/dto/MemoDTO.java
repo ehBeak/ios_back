@@ -6,11 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MemoDTO {
-    private Long id;
+    private Long memoId;
     private String content;
 
-    public MemoDTO(Long id, String content) {
-        this.id = id;
+    public MemoDTO(Long memoId, String content) {
+        this.memoId = memoId;
         this.content = content;
     }
 }
