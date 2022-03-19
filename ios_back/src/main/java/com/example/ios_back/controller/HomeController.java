@@ -33,7 +33,7 @@ public class HomeController {
     private final MemoService memoService;
     private final SubjectRepository subjectRepository;
 
-    //TODO: 변수 파라미터 바꾸기
+
     @GetMapping("/schedule/date")
     public ScheduleDtoV2 getSchedule(@RequestParam(name = "year") String year, @RequestParam(name = "month") String month, @RequestParam(name = "day") String day) {//2017-11-21
         LocalDate requestDate = LocalDate.parse(year+"-"+month+"-"+day);
@@ -50,6 +50,27 @@ public class HomeController {
                     .collect(Collectors.toList());
             scheduleDtoV2.getTodo().add(new TodoDTO(new SubjectDTO(subject.getId(), subject.getName()), homeworkDTOList));
 //            scheduleDTO.getMap().put(subject.getName(), homeworkDTOList);
+        }
+
+        scheduleDtoV2.setMemo(new MemoDTO(schedule.getMemo().getId(), schedule.getMemo().getContent()));
+
+        return scheduleDtoV2;
+    }
+
+    //TODO: 변수 파라미터 바꾸기 - ID로
+    @GetMapping("/schedule/date/{scheduleId}")
+    public ScheduleDtoV2 getScheduleById(@RequestParam(name = "scheduleId") Long scheduleId) {
+        ScheduleDtoV2 scheduleDtoV2 = new ScheduleDtoV2();
+
+        Optional<Schedule> scheduleOptional = scheduleRepository.findById(scheduleId);
+        Schedule schedule = scheduleOptional.orElseThrow(() -> new NoSuchElementException("해당 스케줄이 없습니다."));
+        List<Subject> subjectList = schedule.getSubjectList();
+
+        for (Subject subject : subjectList) {
+            List<HomeworkDTO> homeworkDTOList = subject.getHomeworkList().stream()
+                    .map(homework -> new HomeworkDTO(homework.getId(), homework.getName(), homework.isComplete()))
+                    .collect(Collectors.toList());
+            scheduleDtoV2.getTodo().add(new TodoDTO(new SubjectDTO(subject.getId(), subject.getName()), homeworkDTOList));
         }
 
         scheduleDtoV2.setMemo(new MemoDTO(schedule.getMemo().getId(), schedule.getMemo().getContent()));
