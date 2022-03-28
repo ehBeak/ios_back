@@ -59,7 +59,7 @@ public class HomeController {
 
     //TODO: 변수 파라미터 바꾸기 - ID로
     @GetMapping("/schedule/date/{scheduleId}")
-    public ScheduleDtoV2 getScheduleById(@RequestParam(name = "scheduleId") Long scheduleId) {
+    public ScheduleDtoV2 getScheduleById(@PathVariable Long scheduleId) {
         ScheduleDtoV2 scheduleDtoV2 = new ScheduleDtoV2();
 
         Optional<Schedule> scheduleOptional = scheduleRepository.findById(scheduleId);
