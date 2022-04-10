@@ -1,4 +1,4 @@
-package com.example.ios_back.controller;
+package com.example.ios_back.controller.api;
 
 import com.example.ios_back.controller.dto.*;
 import com.example.ios_back.controller.form.CreateHomeworkForm;
